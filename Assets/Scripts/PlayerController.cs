@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
+    [SerializeField] private float score;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private Rigidbody rb;
     void Start()
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            score++;
+            scoreText.text = $"Score: {score}";
         }
         
     }
