@@ -8,6 +8,7 @@ public class JumpScript : MonoBehaviour
     public Rigidbody rb;
     private bool isJumping;
     private int jumpCount;
+    public float dashSpeed = 10f; 
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class JumpScript : MonoBehaviour
             if(jumpCount > 1)
             {
                 isJumping = true;
+                
             }
             else
             {
@@ -32,7 +34,12 @@ public class JumpScript : MonoBehaviour
             }
            
         }
- 
+
+        if (Input.GetKeyDown(KeyCode.E) && isJumping)
+        {
+            rb.linearVelocity = new Vector3(0, 5, 0);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
