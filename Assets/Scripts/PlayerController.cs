@@ -17,9 +17,15 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer(Vector2 direction)
     {
-        Vector3 moveDirection = new(direction.x, 0f, direction.y);
+        Vector3 moveDirection = new Vector3(direction.x, 0f, direction.y);
+
+        // Convert moveDirection from local to world space relative to the camera
+        moveDirection = Camera.main.transform.TransformDirection(moveDirection);
+        moveDirection.y = 0; // Ensure that the player remains grounded without vertical movement
+
         rb.AddForce(speed * moveDirection);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
